@@ -20,6 +20,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+/**
+ * @author ling122J
+ * Spring Security的核心配置类
+ */
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
@@ -33,28 +37,46 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain0(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+                /**
+                 *  关闭跨站请求伪造攻击
+                 */
                 .csrf(AbstractHttpConfigurer::disable)
+                /**
+                 *  Spring Security放行以下几个路径下的资源
+                 *  /Generate 负责生成验证码
+                 *  /Through 负责校验注册数据
+                 *  /checkUsername 异步检查用户名是否存在
+                 */
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/static/**","/Generate","/Through","/checkUsername").permitAll();
                     auth.anyRequest().authenticated();
                 })
+                /**
+                 *  loginPage  ： 使框架默认登录页失效,接受接口/toLogin返回的自定义界面index
+                 *  loginProcessingUrl : 登录数据提交地址,security内部自动处理
+                 *  successForwardUrl : 登录成功 转发 地址
+                 *  failureHandler : 验证失败时处理
+                 */
                 .formLogin(conf -> {
-                    conf.loginPage("/toLogin");   //使用url:/user/login返回的自定义界面index
-                    conf.loginProcessingUrl("/user/login"); //登录数据提交地址,security内部自动处理
-                    conf.successForwardUrl("/home");   //登录成功转发地址
-                    conf.failureHandler((request, response, exception) -> { //验证失败时处理
+                    conf.loginPage("/toLogin");
+                    conf.loginProcessingUrl("/user/login");
+                    conf.successForwardUrl("/home");
+                    conf.failureHandler((request, response, exception) -> {
                         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                         response.setContentType("application/json");
                     });
                     conf.permitAll();
                 })
                 .logout(conf -> {
-                    conf.logoutUrl("/toLogout");  //这里接口任意,配置了logoutSuccessUrl
+                    conf.logoutUrl("/toLogout");
                     conf.logoutSuccessUrl("/toLogin");
                     conf.permitAll();
                 })
+                /**
+                 * 在提交 注册/登录 表单前 生成验证码
+                 */
                 .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
