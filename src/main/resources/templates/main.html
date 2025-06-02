@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>后台管理</title>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <!-- 头部 -->
+        <div class="layui-header">
+            <div class="layui-logo">学生成绩分析系统</div>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">管理员</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改密码</a></dd>
+                        <dd><a id="logout">注销</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 侧边栏 -->
+        <!-- 修改后的侧边栏部分 -->
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">权限管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a data-url="/permission/list" data-type="permission-list">权限列表</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">角色管理</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a data-url="/role/list" data-type="role-list">角色列表</a></dd>
+                                    <dd><a data-url="/user/list" data-type="user-list">用户列表</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;">模块管理</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a data-url="/module/list" data-type="module-list">模块列表</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">成绩管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a th:href="@{/scoreManage}">成绩录入</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-body">
+            <div id="contentArea" style="padding: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- 工具栏模板 -->
+    <script type="text/html" id="permBar">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="add">添加权限</a>
+    </script>
+    <script type="text/html" id="roleBar">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="add">添加角色</a>
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="bindUser">绑定用户</a>
+    </script>
+    <script type="text/html" id="userBar">
+        <a class="layui-btn layui-btn-xs" lay-event="disable">禁用</a>
+        <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="grant">赋权</a>
+        <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="bindRole">绑定角色</a>
+    </script>
+    <script th:src="@{/static/layui/layui.js}"></script>
+    <script th:src="@{/static/js/main.js}"></script>
+
+
+</body>
+
+</html>

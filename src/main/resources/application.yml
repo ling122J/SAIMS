@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:  #指定应用根路径
+    context-path: /app
+  tomcat:   #指定tomcat最大HTTP表单post大小，-1无限制
+    max-http-form-post-size: -1
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+    static-path-pattern: /static/**
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/major?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: WLJ122927
+    hikari:
+      auto-commit: false
+      connection-timeout: 3000
+      validation-timeout: 3000
+      max-lifetime: 60000
+      maximum-pool-size: 20
+      minimum-idle: 1
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
