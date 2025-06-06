@@ -5,9 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="243c6bbb-9d46-459c-88b8-2252e215dfd6" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/controller/ScoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/entity/Score.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/entity/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/mapper/ScoreMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/mapper/StudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/service/ScoreService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/service/impl/ScoreServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/service/impl/StudentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/java/com/student/management/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/resources/application-dev.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/resources/application-prod.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/resources/mapper/ScoreMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/resources/mapper/StudentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/test/java/com/student/management/service/ScoreServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/test/java/com/student/management/service/StudentServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Ljt/src/test/java/com/student/management/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/47677ead-3942-4534-a5c3-5508eef15d12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +56,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2xwu5tlKLZOnX5Qjs0HOPZceqh3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,8 +73,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "last_opened_file_path": "D:/Java/IDEA/workspace/SAIMS",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Gittest/SAIMS/src/Ljt",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -66,9 +94,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Gittest\SAIMS\src\Ljt" />
       <recent name="D:\Java\IDEA\workspace\SAIMS" />
       <recent name="D:\Java\IDEA\workspace\SAIMS\src\main\resources" />
       <recent name="D:\Java\IDEA\workspace\SAIMS\src\main\java\com\example" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Gittest\SAIMS\src\main" />
     </key>
   </component>
   <component name="RunManager">
@@ -100,6 +132,8 @@
       <option name="presentableId" value="Default" />
       <updated>1748861278298</updated>
       <workItem from="1748861279540" duration="6106000" />
+      <workItem from="1749224028141" duration="101000" />
+      <workItem from="1749224180155" duration="140000" />
     </task>
     <servers />
   </component>
