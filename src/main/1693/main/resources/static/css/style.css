@@ -1,0 +1,105 @@
+/* 新增现代化侧边菜单样式 */
+.sidebar {
+    background: linear-gradient(180deg, #2c3e50, #3498db);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.menu-item {
+    border-radius: 6px;
+    margin: 4px 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+}
+
+.menu-item:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(4px);
+    transition: all 0.3s ease;
+}
+
+/* 新增现代卡片式布局 */
+.query-section {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.query-section:hover {
+    transform: translateY(-2px);
+}
+
+/* 优化表格样式 */
+.audit-table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.audit-table th {
+    background: #3498db;
+    color: white;
+    padding: 12px;
+}
+
+.audit-table td {
+    padding: 12px;
+    background: #f8f9fa;
+}
+
+.audit-table tr:nth-child(even) td {
+    background: #f1f3f5;
+}
+
+/* 新增按钮样式 */
+button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(52,152,219,0.3);
+}
+
+/* 新增响应式设计 */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        padding: 1rem 0;
+    }
+    
+    .menu-item {
+        justify-content: center;
+    }
+}
+
+/* 新增加载动画 */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+/* 优化结果提示框 */
+.result-box {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    font-weight: 500;
+}

@@ -1,0 +1,40 @@
+<!-- 新增评价提交表单 -->
+<div class="evaluation-section">
+    <h3>提交学生评价</h3>
+    <form onsubmit="return submitEvaluation(event)">
+        <select id="studentSelect" required>
+            <option value="">选择学生</option>
+            <!-- 通过API动态加载学生列表 -->
+        </select>
+        <textarea id="evalContent" rows="4" required></textarea>
+        <button type="submit">提交评价</button>
+    </form>
+</div>
+
+<!-- 评价管理列表 -->
+<div class="eval-list">
+    <h3>我的历史评价</h3>
+    <div id="evalItems"></div>
+</div>
+
+<script>
+// 提交评价
+async function submitEvaluation(e) {
+    e.preventDefault();
+    const response = await fetch('/evaluation/submit', {
+        method: 'POST',
+        body: new URLSearchParams({
+            content: document.getElementById('evalContent').value,
+            studentId: document.getElementById('studentSelect').value
+        })
+    });
+    // 处理响应...
+}
+
+// 加载教师历史评价
+async function loadTeacherEvaluations() {
+    const response = await fetch('/evaluation/my');
+    const evals = await response.json();
+    // 渲染评价列表...
+}
+</script>
