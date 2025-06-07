@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册 - 转设管理系统</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>用户注册</h2>
+        <form id="registerForm" onsubmit="return submitRegister(event)">
+            <div class="form-group">
+                <label for="username">用户名：</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码：</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="email">邮箱：</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit">注册</button>
+        </form>
+        <div id="result" class="result-box"></div>
+        <p style="text-align:center; margin-top:1rem;">已有账号？<a href="/index.html">立即登录</a></p>
+    </div>
+
+    <script>
+        async function submitRegister(e) {
+            e.preventDefault();
+            const formData = new FormData(document.getElementById('registerForm'));
+            
+            try {
+                const response = await fetch('/user/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(formData)
+                });
+                
+                const result = document.getElementById('result');
+                const data = await response.text();
+                
+                if (response.ok) {
+                    result.innerHTML = data;
+                    result.style.color = 'green';
+                    setTimeout(() => window.location.href = '/index.html', 1500);
+                } else {
+                    result.innerHTML = data;
+                    result.style.color = 'red';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = '请求发生错误';
+                result.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

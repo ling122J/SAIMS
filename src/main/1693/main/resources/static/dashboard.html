@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩管理系统</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 侧边菜单 -->
+        <div class="sidebar">
+            <h3 style="padding: 0 1rem;color: #fff;">功能导航</h3>
+            <div class="menu-item" onclick="showSection('scoreQuery')">
+                📊 成绩查询
+            </div>
+            <div class="menu-item" onclick="showSection('failQuery')">
+                🔍 不合格查询
+            </div>
+            <div class="menu-item" id="auditMenu" style="display:none;" 
+                 onclick="showSection('auditSection')">
+                ✅ 评价审核
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content-area">
+            <!-- 成绩查询模块 -->
+            <div id="scoreQuery" class="query-section">
+                <h3>学生成绩查询</h3>
+                <form onsubmit="return queryStudentScores(event)">
+                    <input type="number" id="studentId" placeholder="输入学生ID" required>
+                    <button type="submit">查询成绩</button>
+                </form>
+            </div>
+
+            <!-- 不合格查询模块 -->
+            <div id="failQuery" class="query-section" style="display:none;">
+                <h3>科目不合格查询</h3>
+                <form onsubmit="return queryFailStudents(event)">
+                    <select id="courseName" required>
+                        <option value="">选择科目</option>
+                        <option value="语文">语文</option>
+                        <option value="数学">数学</option>
+                        <option value="英语">英语</option>
+                    </select>
+                    <button type="submit">查询不合格</button>
+                </form>
+            </div>
+
+            <!-- 新增审核模块 -->
+            <div id="auditSection" class="query-section" style="display:none;">
+                <h3>待审核评价</h3>
+                <div class="table-container">
+                    <table class="audit-table" id="auditTable">
+                        <thead>
+                            <tr>
+                                <th>学生</th>
+                                <th>评价内容</th>
+                                <th style="width: 180px;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化时获取用户角色
+        let userRole = '';
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const res = await fetch('/user/current');
+                if(res.ok) {
+                    const user = await res.json();
+                    userRole = user.role;
+                    if(userRole === 'admin') {
+                        document.getElementById('auditMenu').style.display = 'block';
+                        loadPendingEvaluations();
+                    }
+                }
+            } catch(e) { console.error(e); }
+        });
+
+        // 显示对应功能模块
+        function showSection(sectionId) {
+            document.querySelectorAll('.query-section').forEach(el => 
+                el.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // 新增加载待审核评价
+        async function loadPendingEvaluations() {
+            try {
+                const response = await fetch('/evaluation/pending');
+                const evaluations = await response.json();
+                
+                const tbody = document.querySelector('#auditTable tbody');
+                tbody.innerHTML = evaluations.map(eval => `
+                    <tr>
+                        <td>${eval.student.user.username}</td>
+                        <td>${eval.content}</td>
+                        <td>
+                            <button class="approve-btn" 
+                                    onclick="auditEvaluation(${eval.evalId}, 'APPROVED')">👍 通过</button>
+                            <button class="reject-btn" 
+                                    onclick="auditEvaluation(${eval.evalId}, 'REJECTED')">👎 拒绝</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch(e) { console.error(e); }
+        }
+
+        // 新增审核操作
+        async function auditEvaluation(evalId, status) {
+            try {
+                const response = await fetch(`/evaluation/audit/${evalId}?status=${status}`, {
+                    method: 'POST'
+                });
+                if(response.ok) {
+                    loadPendingEvaluations();
+                }
+            } catch(e) { console.error(e); }
+        }
+
+        // ... existing query functions ...
+    </script>
+</body>
+</html>
